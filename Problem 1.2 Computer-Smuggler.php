@@ -14,7 +14,9 @@
 
 
 <?php
+
 //prices : CPU - 85lv. / ROM - 45lv / RAM - 35lv. / VIA - 45lv.
+
 if(isset($_GET['list'])){
     $products = $_GET['list'];
     $productsArray = explode(", ", $products);
@@ -33,7 +35,7 @@ if(isset($_GET['list'])){
                 break;
             case 'VIA': $VIACount++;
                 break;
-            default: echo 'This is not a wanted PC part.';
+            default: //do nothing;
                 break;
         }
     }
@@ -44,11 +46,14 @@ if(isset($_GET['list'])){
 
     if ($CPUCount >=5 ){
         $CPUPrice /= 2;
-    } elseif ($RAMCount >=5 ) {
+    }
+    if ($RAMCount >=5 ) {
         $RAMPrice /= 2;
-    } elseif ($ROMCount >= 5) {
+    }
+    if ($ROMCount >= 5) {
         $ROMPrice /= 2;
-    } elseif ($VIACount >= 5) {
+    }
+    if ($VIACount >= 5) {
         $VIAPrice /= 2;
     }
     $expenses = $CPUCount*$CPUPrice + $RAMCount*$RAMPrice +
@@ -75,9 +80,7 @@ if(isset($_GET['list'])){
 
     echo "<ul><li>".$assembledComputers." computers assembled</li><li>".
         $partsLeft." parts left</li></ul>";
-//    echo "<ul>";
-//    echo "<li>$assembledComputers computers assembled</li>";
-//    echo "<li>$partsLeft parts left</li>";
+
     if ($balance > 0){
         echo "<p>Nakov gained ". $balance. " leva</p>";
     } else {
